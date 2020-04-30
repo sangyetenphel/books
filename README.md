@@ -2,6 +2,8 @@
 
 Web Programming with Python and JavaScript
 
+App demonstration video: https://youtu.be/ruAgZ_EHPUo
+
 
 A book review app made with Python Flask and Postgresql. Used Goodreads API.
 
