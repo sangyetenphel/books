@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Search
+{% endblock %}
+
+{% block body %}
+<div class="search">
+    <h1>Search for books</h1>
+    <p>You can search for books via ISBN number, title, or the author of a book.</p>
+    <form action="{{ url_for('search') }}" method="POST">
+        <div class="form-group">
+            <input type="text" class="form-control form-control-lg" name="keyword">
+        </div>
+        <button class="btn btn-primary btn-lg">Search</button>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+body{
+    font-family: "Merriweather", "Georgia", serif;
+}
+
+.box{
+    margin: 10px auto;
+    border: 2px solid rgb(204, 201, 201);
+    padding: 10px;
+    text-align: center;
+    width: 450px;
+}
+
+.m-top{
+    margin-top: 30px;
+}
+
+.msg{
+    text-align: center;
+}
+
+.search{
+    text-align: center;
+    width: 450px;
+    margin: 0 auto;
+    padding-top: 13%;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.checked{
+    color: orange;
+}
+
+.user{
+    font-size: 19.6875px;
+    font-weight: 600;
+}

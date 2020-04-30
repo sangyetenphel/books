@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Book
+{% endblock %}
+
+{% block body %}
+    <!-- bootstrap full-width container with margin top 3 -->
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <div class="col-3">
+                <!-- https://openlibrary.org/dev/docs/api/covers -->
+                <img src="http://covers.openlibrary.org/b/isbn/{{ book.isbn }}-M.jpg"/>
+            </div>
+
+            <div class="col-6">
+                <h1>{{ book.title }}</h1>
+                <hr>
+                <ul>
+                    <li><span class="bold">Author:</span> {{ book.author }} </li>
+                    <li><span class="bold">Publication Year:</span> {{ book.year }}</li>
+                    <li><span class="bold">ISBN:</span> {{ book.isbn }} </li>
+                </ul>
+            </div>
+            <div class="col-sm">
+                <img src="../static/goodreads.jpg" alt="Goodreads" width="230" height="47">
+                <hr>
+                {% if goodreads %}
+                    <li>Average Rating: {{ goodreads['books'][0]['average_rating'] }}</li>
+                    <li>Number of Ratings: {{ goodreads['books'][0]['work_ratings_count'] }}</li>
+                {% else %}
+                    No data available for this book on goodreads.
+                {% endif %}
+            </div>
+        </div>
+    </div>
+        
+    <hr>
+
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <div class="col-sm">
+                <h3>Submit a review</h3>
+                <form action=" {{ url_for('review', isbn=book.isbn) }}" method="POST">    
+                    <div class="form-group">
+                        Give a rating out of five:
+                        <select name="rating" id="">
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                            <option value="4">Four</option>
+                            <option value="5">Five</option>
+                        </select>            
+                    </div>
+                    <div class="form-group">
+                        <textarea name="review" rows="10" placeholder="Write a review" style="width:100%;"></textarea>
+                        *You can only submit a review once per book.
+                    </div>
+                    <button class="btn btn-primary">Submit Review</button>
+                </form>
+            </div>
+            <div class="col-sm">
+                <h3>Reviews</h3> 
+                <hr>
+                {% for review in reviews %}
+                    <div class="alert alert-info">
+                        <h6 class="user">{{ review.username }} </h6>
+                        {% for i in range(review.rating) %}
+                            <span class="fa fa-star checked"></span>
+                        {% endfor %}
+                        {% for i in range(5 - review.rating) %}
+                            <span class="fa fa-star"></span>
+                        {% endfor %}
+                        <p>{{ review.review }}</p>
+                    </div>
+                {% else %}
+                   No review for this book yet. Be the first!
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block body %}
+    <h1>Books List</h1>
+    <hr>
+    {% for book in books %}
+        <li><a href="{{ url_for('book', isbn=book.isbn) }}">{{ book.title }}</a></li>
+    {% else %}
+        <li>No books.</li>
+    {% endfor %}
+{% endblock %}
